@@ -3,15 +3,12 @@ class SVG {
         this.textInput = textInput;
         this.textColor = textColor;
         this.shapeInput = shapeInput;
-        this. shapeColor = shapeColor;
+        this.shapeColor = shapeColor;
     }
     setText() {
-        throw new Error('Child class must implement setText() method.');
-    }
-    setShape() {
-        throw new Error('Child class must implement setShape() method.');
+        this.textRender = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.textInput}</text>`
     }
     render() {
-        
+        throw new Error('Child class must implement setShape() method.');
     }
 }
