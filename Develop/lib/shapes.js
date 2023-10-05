@@ -1,6 +1,23 @@
-const SVG = require('./svg.js');
+// const SVG = require('./svg.js');
 
-class Circle extends SVG {
+class Shapes {
+    constructor(textInput, textColor, shapeInput, shapeColor) {
+        this.textInput = textInput;
+        this.textColor = textColor;
+        this.shapeInput = shapeInput;
+        this.shapeColor = shapeColor;
+    }
+
+    setColor() {
+        const setColor = this.shapeColor;
+    }
+    
+    render() {
+        throw new Error('Child class must implement setShape() method.')
+    }
+}
+
+class Circle extends Shapes {
     constructor(textInput, textColor, shapeInput, shapeColor) {
         super(textInput, textColor, shapeInput, shapeColor)
     }
@@ -9,7 +26,7 @@ class Circle extends SVG {
     }
 }
 
-class Square extends SVG {
+class Square extends Shapes {
     constructor(textInput, textColor, shapeInput, shapeColor) {
         super(textInput, textColor, shapeInput, shapeColor)
     }
@@ -18,7 +35,7 @@ class Square extends SVG {
     }
 }
 
-class Triangle extends SVG {
+class Triangle extends Shapes {
     constructor(textInput, textColor, shapeInput, shapeColor) {
         super(textInput, textColor, shapeInput, shapeColor)
     }
