@@ -12,7 +12,7 @@ class CLI {
         this.finalTextColor = "";
     }
 
-    textPrompt() {
+    runPrompts() {
         return inquirer
             .prompt([
                 {
@@ -20,25 +20,17 @@ class CLI {
                     name: 'textInput',
                     message: 'What text would you like in your logo? Max 3 characters long.',
                 },
-                {
-                    type: 'input',
-                    name: 'textColor',
-                    message: 'What color would you like your text to be?',
-                },
             ])
-            .then(({ textInput, textColor }) => {
+            .then(({ textInput }) => {
                 if (textInput.length <= 3) {
                     this.finalText = textInput;
-                    this.finalTextColor = textColor;
-                    return this.shapePrompt();
+                    return this.continuePrompts();
                 } else {
                     console.log("Text must be maximum 3 characters long!");
-                    return this.textPrompt();
+                    return this.runPrompts();
                 };
             })
             .then(() => {
-                // console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
-                // Why won't this console.log?
                 return writeFile('logo.svg', generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor));
             })
             .then(() => console.log('Created!'))
@@ -48,9 +40,14 @@ class CLI {
             });
     }
 
-    shapePrompt() {
+    continuePrompts() {
         return inquirer
             .prompt([
+                {
+                    type: 'input',
+                    name: 'textColor',
+                    message: 'What color would you like your text to be?',
+                },
                 {
                     type: 'list',
                     name: 'shapeInput',
@@ -63,7 +60,8 @@ class CLI {
                     message: 'What color would you like your shape to be?',
                 }
             ])
-            .then(({ shapeInput, shapeColor }) => {
+            .then(({ textColor, shapeInput, shapeColor }) => {
+                this.finalTextColor = textColor;
                 this.finalShape = shapeInput;
                 this.finalShapeColor = shapeColor;
             })

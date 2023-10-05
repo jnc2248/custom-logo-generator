@@ -1,3 +1,5 @@
+// Parent class
+
 class SVG {
     constructor(textInput, textColor, shapeInput, shapeColor) {
         this.textInput = textInput;
