@@ -37,7 +37,8 @@ class CLI {
                 };
             })
             .then(() => {
-                console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
+                // console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
+                // Why won't this console.log?
                 return fs.writeFile(
                     join(__dirname, '..', 'output', 'logo.svg'),
                     generateSVG(this.textInput, this.textColor, this.shapeInput, this.shapeColor)
