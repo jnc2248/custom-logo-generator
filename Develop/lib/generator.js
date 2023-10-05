@@ -1,20 +1,20 @@
 const { Circle, Square, Triangle } = require('./shapes.js');
-const { TextGen } = require('./text.js');
+const TextGen = require('./text.js');
 
 const generateSVG = (textInput, textColor, shapeInput, shapeColor) => {
 
     if (shapeInput === 'Circle') {
         const newShape = new Circle(shapeColor);
         // const shapeColor = shape.setColor();
-        const shapeRender = newShape.render();
+        return shapeRender = newShape.render();
     } else if (shapeInput === 'Square') {
         const newShape = new Square(shapeColor);
         // const shapeColor = shape.setColor();
-        const shapeRender = newShape.render();
+        return shapeRender = newShape.render();
     } else if (shapeInput === 'Triangle') {
         const newShape = new Triangle(shapeColor);
         // const shapeColor = shape.setColor();
-        const shapeRender = newShape.render();
+        return shapeRender = newShape.render();
     }
 
     const newText = new TextGen(textInput, textColor);

@@ -1,4 +1,6 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const { join } = require('path');
 const { generateSVG } = require('./generator');
 
 
@@ -36,7 +38,7 @@ class CLI {
             })
             .then(() => {
                 console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
-                return writeFile(
+                return fs.writeFile(
                     join(__dirname, '..', 'output', 'logo.svg'),
                     generateSVG(this.textInput, this.textColor, this.shapeInput, this.shapeColor)
                 );
