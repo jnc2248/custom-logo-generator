@@ -1,15 +1,15 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
+const { writeFile } = require('fs').promises;
 const { join } = require('path');
 const { generateSVG } = require('./generator');
 
 
 class CLI {
     constructor() {
-        this.shapeInput = "";
-        this.shapeColor = "";
-        this.textInput = "";
-        this.textColor = "";
+        this.finalShape = "";
+        this.finalShapeColor = "";
+        this.finalText = "";
+        this.finalTextColor = "";
     }
 
     textPrompt() {
@@ -26,10 +26,10 @@ class CLI {
                     message: 'What color would you like your text to be?',
                 },
             ])
-            .then(({ textInput }) => {
+            .then(({ textInput, textColor }) => {
                 if (textInput.length <= 3) {
-                    // this.text = textInput;
-                    // this.textColor = textColorInput;
+                    this.finalText = textInput;
+                    this.finalTextColor = textColor;
                     return this.shapePrompt();
                 } else {
                     console.log("Text must be maximum 3 characters long!");
@@ -39,10 +39,7 @@ class CLI {
             .then(() => {
                 // console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
                 // Why won't this console.log?
-                return fs.writeFile(
-                    join(__dirname, '..', 'output', 'logo.svg'),
-                    generateSVG(this.textInput, this.textColor, this.shapeInput, this.shapeColor)
-                );
+                return writeFile('logo.svg', generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor));
             })
             .then(() => console.log('Created!'))
             .catch((err) => {
@@ -66,6 +63,10 @@ class CLI {
                     message: 'What color would you like your shape to be?',
                 }
             ])
+            .then(({ shapeInput, shapeColor }) => {
+                this.finalShape = shapeInput;
+                this.finalShapeColor = shapeColor;
+            })
             // .then (({ shapeInput, shapeColorInput }) => {
             //     this.shape = shapeInput;
             //     this.shapeColor = shapeColorInput;

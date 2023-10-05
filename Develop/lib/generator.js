@@ -3,18 +3,20 @@ const TextGen = require('./text.js');
 
 const generateSVG = (textInput, textColor, shapeInput, shapeColor) => {
 
+    let shapeRender = "";
+
     if (shapeInput === 'Circle') {
-        const newShape = new Circle(shapeColor);
+        let newShape = new Circle(shapeColor);
         // const shapeColor = shape.setColor();
-        return shapeRender = newShape.render();
+        shapeRender = newShape.render();
     } else if (shapeInput === 'Square') {
-        const newShape = new Square(shapeColor);
+        let newShape = new Square(shapeColor);
         // const shapeColor = shape.setColor();
-        return shapeRender = newShape.render();
+        shapeRender = newShape.render();
     } else if (shapeInput === 'Triangle') {
-        const newShape = new Triangle(shapeColor);
+        let newShape = new Triangle(shapeColor);
         // const shapeColor = shape.setColor();
-        return shapeRender = newShape.render();
+        shapeRender = newShape.render();
     }
 
     const newText = new TextGen(textInput, textColor);
@@ -27,7 +29,9 @@ const generateSVG = (textInput, textColor, shapeInput, shapeColor) => {
     ${textRender}
   
     </svg>
-    `;
+    `
+
+    // renderSVG(textRender, shapeRender);
 }
 
 module.exports = { generateSVG };
