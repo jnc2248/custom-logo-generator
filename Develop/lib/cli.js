@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { generateSVG } = require('./generator');
 
 
 class CLI {

@@ -1,4 +1,5 @@
-
+const { Circle, Square, Triangle } = require('./shapes.js');
+const { TextGen } = require('./text.js');
 
 const generateSVG = (shapeInput) => {
 
