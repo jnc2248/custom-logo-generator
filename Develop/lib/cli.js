@@ -3,13 +3,13 @@ const inquirer = require('inquirer');
 
 class CLI {
     constructor() {
-        this.shape = "";
+        this.shapeInput = "";
         this.shapeColor = "";
-        this.text = "";
+        this.textInput = "";
         this.textColor = "";
     }
 
-    text() {
+    textPrompt() {
         return inquirer
             .prompt([
                 {
@@ -19,23 +19,35 @@ class CLI {
                 },
                 {
                     type: 'input',
-                    name: 'textColorInput',
+                    name: 'textColor',
                     message: 'What color would you like your text to be?',
                 },
             ])
-            .then (({ textInput, textColorInput }) => {
+            .then(({ textInput }) => {
                 if (textInput.length <= 3) {
-                    this.text = textInput;
-                    this.textColor = textColorInput;
-                    return this.shape();
+                    // this.text = textInput;
+                    // this.textColor = textColorInput;
+                    return this.shapePrompt();
                 } else {
                     console.log("Text must be maximum 3 characters long!");
-                    return this.text();
+                    return this.textPrompt();
                 };
+            })
+            .then(() => {
+                console.log(this.textInput, this.textColor, this.shapeInput, this.shapeColor);
+                return writeFile(
+                    join(__dirname, '..', 'output', 'logo.svg'),
+                    generateSVG(this.textInput, this.textColor, this.shapeInput, this.shapeColor)
+                );
+            })
+            .then(() => console.log('Created!'))
+            .catch((err) => {
+                console.log(err);
+                console.log('Something went wrong.');
             });
     }
 
-    shape() {
+    shapePrompt() {
         return inquirer
             .prompt([
                 {
@@ -46,18 +58,22 @@ class CLI {
                 },
                 {
                     type: 'input',
-                    name: 'shapeColorInput',
+                    name: 'shapeColor',
                     message: 'What color would you like your shape to be?',
                 }
             ])
-            .then(({ shapeInput, shapeColorInput }) => {
-                if (shapeInput === 'Circle') {
-                    circleGen(shapeColorInput)
-                } else if (shapeInput === 'Square') {
-                    squareGen(shapeColorInput)
-                } else if (shapeInput === 'Triangle') {
-                    triangleGen(shapeColorInput)
-                };
-            })
+            // .then (({ shapeInput, shapeColorInput }) => {
+            //     this.shape = shapeInput;
+            //     this.shapeColor = shapeColorInput;
+            // })
+            // .then(({ shapeInput, shapeColorInput }) => {
+            //     if (shapeInput === 'Circle') {
+            //         circleGen(shapeColorInput)
+            //     } else if (shapeInput === 'Square') {
+            //         squareGen(shapeColorInput)
+            //     } else if (shapeInput === 'Triangle') {
+            //         triangleGen(shapeColorInput)
+            //     };
+            // })
     };
 }
