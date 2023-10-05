@@ -9,3 +9,5 @@ class SVG {
         throw new Error('Child class must implement setShape() method.')
     }
 }
+
+module.exports = SVG;
