@@ -7,20 +7,21 @@ const generateSVG = (textInput, textColor, shapeInput, shapeColor) => {
 
     if (shapeInput === 'Circle') {
 
-        // shapeRender = new Circle().setColor(shapeColor);
-
         const circle = new Circle();
         circle.setColor(shapeColor);
         shapeRender = circle.render();
 
     } else if (shapeInput === 'Square') {
 
-        shapeRender = new Square().setColor(shapeColor);
+        const square = new Square();
+        square.setColor(shapeColor);
+        shapeRender = square.render();
         
     } else if (shapeInput === 'Triangle') {
 
-        shapeRender = new Triangle().setColor(shapeColor);
-
+        const triangle = new Triangle();
+        triangle.setColor(shapeColor);
+        shapeRender = triangle.render();
     }
 
     const textRender = new TextGen().render(textInput, textColor);
