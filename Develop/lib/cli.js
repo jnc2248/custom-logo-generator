@@ -36,7 +36,7 @@ class CLI {
                     generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor)
                     );
             })
-            .then(() => console.log('Created logo.svg!'))
+            .then(() => console.log('logo.svg generated in output folder!'))
             .catch((err) => {
                 console.log(err);
                 console.log('Something went wrong.');
