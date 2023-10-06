@@ -31,9 +31,12 @@ class CLI {
                 };
             })
             .then(() => {
-                return writeFile('logo.svg', generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor));
+                return writeFile(
+                    join(__dirname, '..', 'output', 'logo.svg'), 
+                    generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor)
+                    );
             })
-            .then(() => console.log('Created!'))
+            .then(() => console.log('Created logo.svg!'))
             .catch((err) => {
                 console.log(err);
                 console.log('Something went wrong.');
@@ -65,20 +68,7 @@ class CLI {
                 this.finalShape = shapeInput;
                 this.finalShapeColor = shapeColor;
             })
-            // .then (({ shapeInput, shapeColorInput }) => {
-            //     this.shape = shapeInput;
-            //     this.shapeColor = shapeColorInput;
-            // })
-            // .then(({ shapeInput, shapeColorInput }) => {
-            //     if (shapeInput === 'Circle') {
-            //         circleGen(shapeColorInput)
-            //     } else if (shapeInput === 'Square') {
-            //         squareGen(shapeColorInput)
-            //     } else if (shapeInput === 'Triangle') {
-            //         triangleGen(shapeColorInput)
-            //     };
-            // })
     };
-}
+};
 
 module.exports = CLI;
