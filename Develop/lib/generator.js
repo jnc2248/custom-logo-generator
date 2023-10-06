@@ -7,7 +7,11 @@ const generateSVG = (textInput, textColor, shapeInput, shapeColor) => {
 
     if (shapeInput === 'Circle') {
 
-        shapeRender = new Circle().setColor(shapeColor);
+        // shapeRender = new Circle().setColor(shapeColor);
+
+        const circle = new Circle();
+        circle.setColor(shapeColor);
+        shapeRender = circle.render();
 
     } else if (shapeInput === 'Square') {
 

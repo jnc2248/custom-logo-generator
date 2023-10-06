@@ -1,45 +1,42 @@
 class Shapes {
-    constructor(textInput, textColor, shapeInput, shapeColor) {
-        this.textInput = textInput;
-        this.textColor = textColor;
-        this.shapeInput = shapeInput;
-        this.shapeColor = shapeColor;
+    constructor() {
+        this.setColor = "";
 
-        this.setColor = () => {
-            throw new Error('Child class must implement setShape() method.')
+        this.setColor = (response) => {
+            this.setColor = response;
+        }
+        this.render = () => {
+            throw new Error('Child class must implement render() method.')
         }
     }
 }
 
 class Circle extends Shapes {
-    constructor(textInput, textColor, shapeInput, shapeColor) {
-        super(textInput, textColor, shapeInput, shapeColor)
-
-        this.setColor = (response) => {
-            const setColor = response;
-            return `<circle cx="150" cy="100" r="80" fill="${setColor}" />`
+    constructor() {
+        super()
+        
+        this.render = () => {
+            return `<circle cx="150" cy="100" r="80" fill="${this.setColor}" />`
         }
     }
 }
 
 class Square extends Shapes {
-    constructor(textInput, textColor, shapeInput, shapeColor) {
-        super(textInput, textColor, shapeInput, shapeColor)
+    constructor() {
+        super()
 
-        this.setColor = (response) => {
-            const setColor = response;
-            return `<rect x="90" y="40" width="120" height="120" fill="${setColor}" />`
+        this.render = () => {
+            return `<rect x="90" y="40" width="120" height="120" fill="${this.setColor}" />`
         }
     }
 }
 
 class Triangle extends Shapes {
-    constructor(textInput, textColor, shapeInput, shapeColor) {
-        super(textInput, textColor, shapeInput, shapeColor)
-
-        this.setColor = (response) => {
-            const setColor = response;
-            return `<polygon points="150, 18 244, 182 56, 182" fill="${setColor}" />`
+    constructor() {
+        super()
+       
+        this.render = () => {
+            return `<polygon points="150, 18 244, 182 56, 182" fill="${this.setColor}" />`
         }
     }
 }
