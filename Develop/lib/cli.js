@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
 const { join } = require('path');
-const { generateSVG } = require('./generator');
+// const { generateSVG } = require('./generator');
+const SVG = require('./svg');
 
 
 class CLI {
@@ -30,12 +31,23 @@ class CLI {
                     return this.runPrompts();
                 };
             })
+            // Create .then to gen new SVG with final inputs
+            // new SVG => setText and set Shape => render => set equal to const and pass to writeFile
             .then(() => {
+                const newSVG = new SVG();
+                newSVG.setText(this.finalText, this.finalTextColor);
+                newSVG.setShape(this.finalShape, this.finalShapeColor);
+                const finalSVG = newSVG.render();
+
                 return writeFile(
-                    join(__dirname, '..', 'output', 'logo.svg'), 
-                    generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor)
-                    );
+                    join(__dirname, '..', 'output', 'logo.svg'), finalSVG);
             })
+            // .then(() => {
+            //     return writeFile(
+            //         join(__dirname, '..', 'output', 'logo.svg'), 
+            //         generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor)
+            //         );
+            // })
             .then(() => console.log('logo.svg generated in output folder!'))
             .catch((err) => {
                 console.log(err);
