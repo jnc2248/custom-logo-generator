@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const { writeFile } = require('fs').promises;
 const { join } = require('path');
-// const { generateSVG } = require('./generator');
 const SVG = require('./svg');
 
 
@@ -27,12 +26,10 @@ class CLI {
                     this.finalText = textInput;
                     return this.continuePrompts();
                 } else {
-                    console.log("Text must be maximum 3 characters long!");
+                    console.log("Text must be max 3 characters long!");
                     return this.runPrompts();
                 };
             })
-            // Create .then to gen new SVG with final inputs
-            // new SVG => setText and set Shape => render => set equal to const and pass to writeFile
             .then(() => {
                 const newSVG = new SVG();
                 newSVG.setText(this.finalText, this.finalTextColor);
@@ -42,12 +39,6 @@ class CLI {
                 return writeFile(
                     join(__dirname, '..', 'output', 'logo.svg'), finalSVG);
             })
-            // .then(() => {
-            //     return writeFile(
-            //         join(__dirname, '..', 'output', 'logo.svg'), 
-            //         generateSVG(this.finalText, this.finalTextColor, this.finalShape, this.finalShapeColor)
-            //         );
-            // })
             .then(() => console.log('logo.svg generated in output folder!'))
             .catch((err) => {
                 console.log(err);
