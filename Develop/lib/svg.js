@@ -14,7 +14,7 @@ class SVG {
     setText(textInput, textColorInput) {
 
         if (textInput.length <= 3) {
-            this.textRender = `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${textColorInput}">${textInput}</text>`
+            this.textRender = `<text x="150" y="125" font-size="60" font-family="Georgia" text-anchor="middle" fill="${textColorInput}">${textInput}</text>`
         } else {
             throw new Error("Text must not exceed 3 characters.")
         }
