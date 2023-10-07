@@ -34,10 +34,9 @@ class CLI {
                 const newSVG = new SVG();
                 newSVG.setText(this.finalText, this.finalTextColor);
                 newSVG.setShape(this.finalShape, this.finalShapeColor);
-                const finalSVG = newSVG.render();
 
                 return writeFile(
-                    join(__dirname, '..', 'output', 'logo.svg'), finalSVG);
+                    join(__dirname, '..', 'output', 'logo.svg'), newSVG.render());
             })
             .then(() => console.log('logo.svg generated in output folder!'))
             .catch((err) => {
