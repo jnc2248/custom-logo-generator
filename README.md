@@ -6,7 +6,7 @@ This project was created to provide the user with a way to create a custom logo 
 
 ## Installation
 
-Navigate to my [GitHub page](https://github.com/jnc444xd/custom-logo-generator) and clone the code to your local machine. Navigate to the application's folder, and then enter "npm i inquirer@8.2.4" into your terminal to install the inquirer package that is necessary to run this app.
+Navigate to my [GitHub page](https://github.com/jnc444xd/custom-logo-generator) and clone the code to your local machine. Navigate to the application's folder and enter "npm i inquirer@8.2.4" into your terminal to install the inquirer package that is necessary to run this app.
 
 ## Usage
 
